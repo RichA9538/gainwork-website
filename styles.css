@@ -246,6 +246,9 @@ section h2 {
   max-width: 640px;
   line-height: 1.7;
   margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 /* ---- HOW IT WORKS ---- */
@@ -274,8 +277,8 @@ section h2 {
   border-color: var(--navy);
   color: var(--white);
 }
-.portal-card--center h3 { color: var(--green-light); }
-.portal-card--center p { color: rgba(255,255,255,0.75); }
+.portal-card--center h3 { color: var(--white); }
+.portal-card--center p { color: var(--white); }
 .portal-card--center .portal-features li { color: rgba(255,255,255,0.8); }
 .portal-card--center .portal-features li::before { color: var(--green-light); }
 .portal-icon {
