@@ -277,8 +277,6 @@ section h2 {
   border-color: var(--navy);
   color: var(--white);
 }
-.portal-card--center h3 { color: var(--white); }
-.portal-card--center p { color: var(--white); }
 .portal-card--center .portal-features li { color: rgba(255,255,255,0.8); }
 .portal-card--center .portal-features li::before { color: var(--green-light); }
 .portal-icon {
@@ -291,12 +289,14 @@ section h2 {
   color: var(--navy);
   margin-bottom: 0.75rem;
 }
+.portal-card--center h3 { color: var(--white); }
 .portal-card p {
   font-size: 0.92rem;
   color: var(--text-mid);
   line-height: 1.6;
   margin-bottom: 1.2rem;
 }
+.portal-card--center p { color: var(--white); }
 .portal-features {
   list-style: none;
   display: flex;
