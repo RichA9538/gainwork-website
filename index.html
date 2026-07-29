@@ -181,35 +181,35 @@
                     <span><span class="pill pill-green">Active</span></span>
                     <span>Interviewing</span>
                     <span>Today</span>
-                    <span><button class="match-btn">Match Jobs</button></span>
+                    <span><button class="match-btn" onclick="openMatchModal('James Rivera')">Match Jobs</button></span>
                   </div>
                   <div class="jc-table-row">
                     <span class="jc-name"><span class="jc-avatar" style="background:#1E2240">TW</span>Tamika Williams</span>
                     <span><span class="pill pill-yellow">Pending</span></span>
                     <span>Resume Review</span>
                     <span>2 days ago</span>
-                    <span><button class="match-btn">Match Jobs</button></span>
+                    <span><button class="match-btn" onclick="openMatchModal('Tamika Williams')">Match Jobs</button></span>
                   </div>
                   <div class="jc-table-row">
                     <span class="jc-name"><span class="jc-avatar" style="background:#6366f1">DM</span>David Martinez</span>
                     <span><span class="pill pill-blue">New</span></span>
                     <span>Intake</span>
                     <span>Today</span>
-                    <span><button class="match-btn">Match Jobs</button></span>
+                    <span><button class="match-btn" onclick="openMatchModal('David Martinez')">Match Jobs</button></span>
                   </div>
                   <div class="jc-table-row">
                     <span class="jc-name"><span class="jc-avatar" style="background:#f59e0b">SJ</span>Sandra Johnson</span>
                     <span><span class="pill pill-green">Active</span></span>
                     <span>Job Offer</span>
                     <span>Yesterday</span>
-                    <span><button class="match-btn">Match Jobs</button></span>
+                    <span><button class="match-btn" onclick="openMatchModal('Sandra Johnson')">Match Jobs</button></span>
                   </div>
                   <div class="jc-table-row">
                     <span class="jc-name"><span class="jc-avatar" style="background:#ef4444">KP</span>Kevin Parker</span>
                     <span><span class="pill pill-gray">On Hold</span></span>
                     <span>Background Check</span>
                     <span>5 days ago</span>
-                    <span><button class="match-btn">Match Jobs</button></span>
+                    <span><button class="match-btn" onclick="openMatchModal('Kevin Parker')">Match Jobs</button></span>
                   </div>
                 </div>
               </div>
@@ -271,17 +271,17 @@
                 </div>
                 <div class="js-jobs">
                   <div class="js-jobs-header">🎯 Your Job Matches (3 New)</div>
-                  <div class="js-job-row">
+                  <div class="js-job-row" id="apply-row-1">
                     <div><div class="js-job-title">Warehouse Associate</div><div class="js-job-co">Amazon Logistics • Clearwater, FL</div></div>
-                    <button class="apply-btn">Apply Now</button>
+                    <button class="apply-btn" onclick="applyToJob(this,'Warehouse Associate','Amazon Logistics')">Apply Now</button>
                   </div>
-                  <div class="js-job-row">
+                  <div class="js-job-row" id="apply-row-2">
                     <div><div class="js-job-title">Customer Service Rep</div><div class="js-job-co">Bright House Networks • Tampa, FL</div></div>
-                    <button class="apply-btn">Apply Now</button>
+                    <button class="apply-btn" onclick="applyToJob(this,'Customer Service Rep','Bright House Networks')">Apply Now</button>
                   </div>
-                  <div class="js-job-row">
+                  <div class="js-job-row" id="apply-row-3">
                     <div><div class="js-job-title">Delivery Driver</div><div class="js-job-co">FedEx Ground • St. Petersburg, FL</div></div>
-                    <button class="apply-btn">Apply Now</button>
+                    <button class="apply-btn" onclick="applyToJob(this,'Delivery Driver','FedEx Ground')">Apply Now</button>
                   </div>
                 </div>
               </div>
@@ -303,7 +303,20 @@
             <div class="emp-layout">
               <div class="emp-header">
                 <h3>Your Job Postings</h3>
-                <button class="emp-post-btn">+ Post a New Job</button>
+                <button class="emp-post-btn" onclick="openPostJobForm()">+ Post a New Job</button>
+              </div>
+              <!-- Post Job Form (hidden by default) -->
+              <div id="post-job-form" style="display:none;background:#f0faf6;border:1.5px solid #3EBF8F;border-radius:10px;padding:16px 18px;margin-bottom:14px;">
+                <div style="font-weight:700;color:#1E2A4A;margin-bottom:10px;">📋 Post a New Job</div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <input id="new-job-title" type="text" placeholder="Job Title (e.g. Forklift Operator)" style="padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:0.85rem;" />
+                  <input id="new-job-location" type="text" placeholder="Location (e.g. Tampa, FL)" style="padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:0.85rem;" />
+                  <input id="new-job-pay" type="text" placeholder="Pay Range (e.g. $16–$20/hr)" style="padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:0.85rem;" />
+                  <div style="display:flex;gap:8px;margin-top:4px;">
+                    <button onclick="submitNewJob()" style="background:#3EBF8F;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-weight:700;cursor:pointer;">Post Job</button>
+                    <button onclick="document.getElementById('post-job-form').style.display='none'" style="background:#eee;color:#333;border:none;padding:8px 14px;border-radius:6px;cursor:pointer;">Cancel</button>
+                  </div>
+                </div>
               </div>
               <div class="emp-jobs">
                 <div class="emp-job-card">
@@ -319,7 +332,7 @@
                   <div class="emp-job-stats">
                     <div class="emp-big">8</div>
                     <div class="emp-small">Applicants</div>
-                    <button class="view-btn">View Candidates</button>
+                    <button class="view-btn" onclick="openCandidatesModal('Warehouse Associate')">View Candidates</button>
                   </div>
                 </div>
                 <div class="emp-job-card">
@@ -334,7 +347,7 @@
                   <div class="emp-job-stats">
                     <div class="emp-big">14</div>
                     <div class="emp-small">Applicants</div>
-                    <button class="view-btn">View Candidates</button>
+                    <button class="view-btn" onclick="openCandidatesModal('Customer Service Rep')">View Candidates</button>
                   </div>
                 </div>
                 <div class="emp-job-card">
@@ -350,9 +363,11 @@
                   <div class="emp-job-stats">
                     <div class="emp-big">6</div>
                     <div class="emp-small">Applicants</div>
-                    <button class="view-btn">View Candidates</button>
+                    <button class="view-btn" onclick="openCandidatesModal('Delivery Driver')">View Candidates</button>
                   </div>
                 </div>
+                <!-- Dynamic new jobs added here -->
+                <div id="emp-new-jobs"></div>
               </div>
             </div>
           </div>
@@ -530,13 +545,66 @@
     </div>
   </footer>
 
+    <!-- Demo Modals -->
+  <div id="demo-modal-overlay" onclick="closeAllModals()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9000;"></div>
+
+  <!-- Match Jobs Modal (Job Coach) -->
+  <div id="modal-match" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:14px;padding:28px 28px 22px;width:min(480px,92vw);z-index:9001;box-shadow:0 20px 60px rgba(0,0,0,0.25);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h3 id="modal-match-title" style="margin:0;font-size:1.05rem;color:#1E2A4A;">🎯 Job Matches</h3>
+      <button onclick="closeAllModals()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:#888;">✕</button>
+    </div>
+    <div id="modal-match-body"></div>
+    <div id="modal-match-sent" style="display:none;text-align:center;padding:18px 0;">
+      <div style="font-size:2rem;">✅</div>
+      <div style="font-weight:700;color:#3EBF8F;font-size:1.05rem;margin-top:8px;">Jobs sent successfully!</div>
+      <div id="modal-match-sent-name" style="color:#555;font-size:0.9rem;margin-top:4px;"></div>
+      <button onclick="closeAllModals()" style="margin-top:16px;background:#3EBF8F;color:#fff;border:none;padding:9px 24px;border-radius:7px;font-weight:700;cursor:pointer;">Done</button>
+    </div>
+  </div>
+
+  <!-- Apply Confirmation Modal (Job Seeker) -->
+  <div id="modal-apply" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:14px;padding:28px;width:min(440px,92vw);z-index:9001;box-shadow:0 20px 60px rgba(0,0,0,0.25);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <h3 id="modal-apply-title" style="margin:0;font-size:1rem;color:#1E2A4A;">💼 Apply for Job</h3>
+      <button onclick="closeAllModals()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:#888;">✕</button>
+    </div>
+    <!-- Step 1 -->
+    <div id="apply-step-1">
+      <div id="apply-job-summary" style="background:#f0faf6;border-radius:8px;padding:14px;margin-bottom:14px;font-size:0.9rem;color:#1E2A4A;"></div>
+      <p style="font-size:0.88rem;color:#555;margin-bottom:14px;">Your resume and profile will be shared with this employer. Your job coach Maria will be notified.</p>
+      <div style="display:flex;gap:10px;">
+        <button id="apply-confirm-btn" onclick="confirmApply()" style="flex:1;background:#3EBF8F;color:#fff;border:none;padding:10px;border-radius:7px;font-weight:700;cursor:pointer;">✅ Confirm Application</button>
+        <button onclick="closeAllModals()" style="background:#eee;color:#333;border:none;padding:10px 14px;border-radius:7px;cursor:pointer;">Cancel</button>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div id="apply-step-2" style="display:none;text-align:center;padding:10px 0;">
+      <div style="font-size:2.2rem;">🎉</div>
+      <div style="font-weight:700;color:#3EBF8F;font-size:1.05rem;margin-top:10px;">Application Submitted!</div>
+      <div id="apply-success-msg" style="color:#555;font-size:0.88rem;margin-top:6px;line-height:1.5;"></div>
+      <button onclick="closeAllModals()" style="margin-top:18px;background:#1E2A4A;color:#fff;border:none;padding:9px 24px;border-radius:7px;font-weight:700;cursor:pointer;">Back to Dashboard</button>
+    </div>
+  </div>
+
+  <!-- View Candidates Modal (Employer) -->
+  <div id="modal-candidates" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:14px;padding:28px;width:min(500px,92vw);z-index:9001;box-shadow:0 20px 60px rgba(0,0,0,0.25);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h3 id="modal-candidates-title" style="margin:0;font-size:1rem;color:#1E2A4A;">👥 Candidates</h3>
+      <button onclick="closeAllModals()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:#888;">✕</button>
+    </div>
+    <div id="modal-candidates-body"></div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="demo-toast" style="display:none;position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1E2A4A;color:#fff;padding:12px 24px;border-radius:30px;font-size:0.9rem;font-weight:600;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.25);"></div>
+
   <script>
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
     });
-
     // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
@@ -550,13 +618,185 @@
         toggle.classList.remove('open');
       });
     });
-
     // Demo panel switching
     function switchDemo(panel, btn) {
       document.querySelectorAll('.demo-tab').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('demo-' + panel).classList.add('active');
+    }
+
+    // ---- DEMO INTERACTIVITY ----
+
+    function showToast(msg) {
+      const t = document.getElementById('demo-toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3000);
+    }
+
+    function closeAllModals() {
+      document.getElementById('demo-modal-overlay').style.display = 'none';
+      ['modal-match','modal-apply','modal-candidates'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+      // Reset apply steps
+      document.getElementById('apply-step-1').style.display = 'block';
+      document.getElementById('apply-step-2').style.display = 'none';
+      // Reset match modal
+      document.getElementById('modal-match-body').style.display = 'block';
+      document.getElementById('modal-match-sent').style.display = 'none';
+    }
+
+    function openModal(id) {
+      document.getElementById('demo-modal-overlay').style.display = 'block';
+      document.getElementById(id).style.display = 'block';
+    }
+
+    // --- Job Coach: Match Jobs ---
+    const matchData = [
+      { title: 'Warehouse Associate', company: 'Amazon Logistics', location: 'Clearwater, FL', pay: '$16–$19/hr', match: '94%' },
+      { title: 'Forklift Operator', company: 'Home Depot Distribution', location: 'Tampa, FL', pay: '$18–$21/hr', match: '88%' },
+      { title: 'Production Worker', company: 'Tropicana Foods', location: 'Bradenton, FL', pay: '$15–$17/hr', match: '81%' }
+    ];
+    let currentMatchClient = '';
+    function openMatchModal(clientName) {
+      currentMatchClient = clientName;
+      document.getElementById('modal-match-title').textContent = '🎯 Job Matches for ' + clientName;
+      const body = document.getElementById('modal-match-body');
+      body.innerHTML = matchData.map((j,i) => `
+        <div style="border:1px solid #e5e7eb;border-radius:9px;padding:12px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:700;color:#1E2A4A;font-size:0.93rem;">${j.title}</div>
+            <div style="font-size:0.8rem;color:#666;margin-top:2px;">${j.company} • ${j.location}</div>
+            <div style="font-size:0.8rem;color:#3EBF8F;margin-top:2px;">${j.pay}</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="background:#f0faf6;color:#3EBF8F;font-weight:700;font-size:0.85rem;padding:4px 10px;border-radius:20px;margin-bottom:6px;">${j.match} match</div>
+            <button onclick="sendJobToClient(${i})" id="send-btn-${i}" style="background:#3EBF8F;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:700;cursor:pointer;">Send to Client</button>
+          </div>
+        </div>
+      `).join('');
+      body.innerHTML += `<button onclick="sendAllJobs()" style="width:100%;margin-top:4px;background:#1E2A4A;color:#fff;border:none;padding:10px;border-radius:7px;font-weight:700;cursor:pointer;">📤 Send All 3 Matches to ${clientName}</button>`;
+      document.getElementById('modal-match-body').style.display = 'block';
+      document.getElementById('modal-match-sent').style.display = 'none';
+      openModal('modal-match');
+    }
+    function sendJobToClient(idx) {
+      const btn = document.getElementById('send-btn-' + idx);
+      btn.textContent = '✅ Sent';
+      btn.style.background = '#888';
+      btn.disabled = true;
+      showToast('✅ ' + matchData[idx].title + ' sent to ' + currentMatchClient);
+    }
+    function sendAllJobs() {
+      document.getElementById('modal-match-body').style.display = 'none';
+      document.getElementById('modal-match-sent').style.display = 'block';
+      document.getElementById('modal-match-sent-name').textContent = 'All 3 job matches sent to ' + currentMatchClient + '. They will be notified by email.';
+    }
+
+    // --- Job Seeker: Apply Now ---
+    let currentApplyBtn = null;
+    let currentApplyJob = '';
+    let currentApplyCo = '';
+    function applyToJob(btn, jobTitle, company) {
+      if (btn.disabled) return;
+      currentApplyBtn = btn;
+      currentApplyJob = jobTitle;
+      currentApplyCo = company;
+      document.getElementById('modal-apply-title').textContent = '💼 Apply — ' + jobTitle;
+      document.getElementById('apply-job-summary').innerHTML = `
+        <strong>${jobTitle}</strong><br>
+        <span style="color:#555;">${company} • Tampa Bay Area, FL</span><br>
+        <span style="color:#3EBF8F;font-weight:600;">Entry Level • Immediate Start Available</span>
+      `;
+      document.getElementById('apply-step-1').style.display = 'block';
+      document.getElementById('apply-step-2').style.display = 'none';
+      openModal('modal-apply');
+    }
+    function confirmApply() {
+      document.getElementById('apply-step-1').style.display = 'none';
+      document.getElementById('apply-step-2').style.display = 'block';
+      document.getElementById('apply-success-msg').innerHTML =
+        'Your application for <strong>' + currentApplyJob + '</strong> at <strong>' + currentApplyCo + '</strong> has been submitted.<br>Your coach <strong>Maria</strong> has been notified and will follow up with you.';
+      if (currentApplyBtn) {
+        currentApplyBtn.textContent = '✅ Applied';
+        currentApplyBtn.style.background = '#888';
+        currentApplyBtn.disabled = true;
+      }
+    }
+
+    // --- Employer: View Candidates ---
+    const candidatesByJob = {
+      'Warehouse Associate': [
+        { name: 'James Rivera', skills: 'Forklift, Inventory, Reliable Transport', status: 'Ready to Interview', coach: 'Maria S.' },
+        { name: 'Kevin Parker', skills: 'Warehouse, Shipping & Receiving', status: 'Background Check Pending', coach: 'Maria S.' },
+        { name: 'David Martinez', skills: 'Physical Labor, Teamwork, Punctual', status: 'New Applicant', coach: 'Maria S.' }
+      ],
+      'Customer Service Rep': [
+        { name: 'Tamika Williams', skills: 'Customer Service, MS Office, Bilingual', status: 'Ready to Interview', coach: 'Maria S.' },
+        { name: 'Sandra Johnson', skills: 'Call Center, CRM Software, Communication', status: 'Interview Scheduled', coach: 'Maria S.' }
+      ],
+      'Delivery Driver': [
+        { name: 'James Rivera', skills: 'Valid FL License, Clean Record, GPS Navigation', status: 'Ready to Interview', coach: 'Maria S.' },
+        { name: 'Kevin Parker', skills: 'Delivery, Route Planning', status: 'Available Immediately', coach: 'Maria S.' }
+      ]
+    };
+    function openCandidatesModal(jobTitle) {
+      document.getElementById('modal-candidates-title').textContent = '👥 Candidates — ' + jobTitle;
+      const candidates = candidatesByJob[jobTitle] || [];
+      document.getElementById('modal-candidates-body').innerHTML = candidates.map(c => `
+        <div style="border:1px solid #e5e7eb;border-radius:9px;padding:12px 14px;margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div style="font-weight:700;color:#1E2A4A;">${c.name}</div>
+              <div style="font-size:0.8rem;color:#666;margin-top:3px;">Skills: ${c.skills}</div>
+              <div style="font-size:0.8rem;color:#3EBF8F;margin-top:2px;">Coach: ${c.coach}</div>
+            </div>
+            <span style="font-size:0.75rem;background:#f0faf6;color:#1E2A4A;padding:3px 9px;border-radius:20px;white-space:nowrap;">${c.status}</span>
+          </div>
+          <button onclick="scheduleInterview('${c.name}')" style="margin-top:10px;background:#1E2A4A;color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:0.82rem;font-weight:700;cursor:pointer;">📅 Schedule Interview</button>
+        </div>
+      `).join('');
+      openModal('modal-candidates');
+    }
+    function scheduleInterview(name) {
+      showToast('📅 Interview request sent to ' + name + '\'s coach!');
+      closeAllModals();
+    }
+
+    // --- Employer: Post New Job ---
+    function openPostJobForm() {
+      const form = document.getElementById('post-job-form');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+    function submitNewJob() {
+      const title = document.getElementById('new-job-title').value.trim();
+      const location = document.getElementById('new-job-location').value.trim();
+      const pay = document.getElementById('new-job-pay').value.trim();
+      if (!title || !location) { showToast('⚠️ Please enter a job title and location.'); return; }
+      const container = document.getElementById('emp-new-jobs');
+      const card = document.createElement('div');
+      card.className = 'emp-job-card';
+      card.style.border = '2px solid #3EBF8F';
+      card.innerHTML = `
+        <div class="emp-job-info">
+          <h4>${title} <span style="font-size:0.75rem;background:#f0faf6;color:#3EBF8F;padding:2px 8px;border-radius:10px;margin-left:6px;">New</span></h4>
+          <p>Just posted • ${location}${pay ? ' • ' + pay : ''}</p>
+          <div class="emp-tags"><span class="emp-tag">Full Time</span></div>
+        </div>
+        <div class="emp-job-stats">
+          <div class="emp-big">0</div>
+          <div class="emp-small">Applicants</div>
+          <button class="view-btn" style="opacity:0.5;cursor:default;">View Candidates</button>
+        </div>
+      `;
+      container.appendChild(card);
+      document.getElementById('post-job-form').style.display = 'none';
+      document.getElementById('new-job-title').value = '';
+      document.getElementById('new-job-location').value = '';
+      document.getElementById('new-job-pay').value = '';
+      showToast('✅ "' + title + '" posted! Gainwork coaches will start matching candidates.');
     }
 
     // Waitlist form AJAX submission
