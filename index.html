@@ -156,13 +156,13 @@
             <div class="jc-layout">
               <div class="jc-sidebar">
                 <div class="jc-sidebar-logo"><span>Gainwork</span></div>
-                <div class="jc-nav-item active">📊 Dashboard</div>
-                <div class="jc-nav-item">👥 My Clients</div>
-                <div class="jc-nav-item">🔍 Prospect Employers</div>
-                <div class="jc-nav-item">💼 Job Board</div>
-                <div class="jc-nav-item">📋 Employer Database</div>
-                <div class="jc-nav-item">💬 Messages</div>
-                <div class="jc-nav-item">📊 Reports</div>
+                <div class="jc-nav-item active" onclick="showCoachView('dashboard', this)">📊 Dashboard</div>
+                <div class="jc-nav-item" onclick="showCoachView('clients', this)">👥 My Clients</div>
+                <div class="jc-nav-item" onclick="showCoachView('prospect', this)">🔍 Prospect Employers</div>
+                <div class="jc-nav-item" onclick="showCoachView('jobboard', this)">💼 Job Board</div>
+                <div class="jc-nav-item" onclick="showCoachView('empdb', this)">📋 Employer Database</div>
+                <div class="jc-nav-item" onclick="showCoachView('messages', this)">💬 Messages</div>
+                <div class="jc-nav-item" onclick="showCoachView('reports', this)">📊 Reports</div>
               </div>
               <div class="jc-main">
                 <div class="jc-header">
@@ -234,12 +234,12 @@
             <div class="js-layout">
               <div class="js-sidebar">
                 <div class="js-sidebar-logo"><span>Gainwork</span></div>
-                <div class="js-nav-item active">🏠 My Dashboard</div>
-                <div class="js-nav-item">📄 My Resume</div>
-                <div class="js-nav-item">💼 Job Matches</div>
-                <div class="js-nav-item">🎤 Mock Interview</div>
-                <div class="js-nav-item">🎓 Learn</div>
-                <div class="js-nav-item">💬 My Coach</div>
+                <div class="js-nav-item active" onclick="showSeekerView('dashboard', this)">🏠 My Dashboard</div>
+                <div class="js-nav-item" onclick="showSeekerView('resume', this)">📄 My Resume</div>
+                <div class="js-nav-item" onclick="showSeekerView('matches', this)">💼 Job Matches</div>
+                <div class="js-nav-item" onclick="showSeekerView('interview', this)">🎤 Mock Interview</div>
+                <div class="js-nav-item" onclick="showSeekerView('learn', this)">🎓 Learn</div>
+                <div class="js-nav-item" onclick="showSeekerView('coach', this)">💬 My Coach</div>
               </div>
               <div class="js-main">
                 <div class="js-welcome">
@@ -251,22 +251,22 @@
                   </div>
                 </div>
                 <div class="js-cards">
-                  <div class="js-card">
+                  <div class="js-card" onclick="showSeekerView('resume', document.querySelector('.js-nav-item:nth-child(2)'))" style="cursor:pointer;">
                     <div class="js-card-icon">📄</div>
                     <h4>Build My Resume</h4>
                     <p>AI-powered resume builder</p>
                   </div>
-                  <div class="js-card">
+                  <div class="js-card" onclick="showSeekerView('interview', document.querySelector('.js-nav-item:nth-child(4)'))" style="cursor:pointer;">
                     <div class="js-card-icon">🎤</div>
                     <h4>Practice Interview</h4>
                     <p>Interactive mock questions</p>
                   </div>
-                  <div class="js-card">
+                  <div class="js-card" onclick="showSeekerView('learn', document.querySelector('.js-nav-item:nth-child(5)'))" style="cursor:pointer;">
                     <div class="js-card-icon">🎓</div>
                     <h4>Watch &amp; Learn</h4>
                     <p>Workforce readiness videos</p>
                   </div>
-                  <div class="js-card">
+                  <div class="js-card" onclick="showSeekerView('coach', document.querySelector('.js-nav-item:nth-child(6)'))" style="cursor:pointer;">
                     <div class="js-card-icon">💬</div>
                     <h4>Message Coach</h4>
                     <p>1 unread message from Maria</p>
@@ -800,6 +800,214 @@
       document.getElementById('new-job-location').value = '';
       document.getElementById('new-job-pay').value = '';
       showToast('✅ "' + title + '" posted! Gainwork coaches will start matching candidates.');
+    }
+
+    // ---- COACH SIDEBAR VIEWS ----
+    const coachViews = {
+      dashboard: `
+        <div class="jc-header"><h3>Welcome back, Maria 👋</h3><span style="font-size:0.8rem;color:#888">Monday, July 28, 2026</span></div>
+        <div class="jc-stats">
+          <div class="jc-stat-card"><div class="jc-num">12</div><div class="jc-lbl">Active Clients</div></div>
+          <div class="jc-stat-card"><div class="jc-num">3</div><div class="jc-lbl">Interviews This Week</div></div>
+          <div class="jc-stat-card"><div class="jc-num">7</div><div class="jc-lbl">Job Matches Sent</div></div>
+          <div class="jc-stat-card"><div class="jc-num">5</div><div class="jc-lbl">Placements YTD</div></div>
+        </div>
+        <div class="jc-table">
+          <div class="jc-table-header"><span>Client</span><span>Status</span><span>Stage</span><span>Last Contact</span><span>Action</span></div>
+          <div class="jc-table-row"><span class="jc-name"><span class="jc-avatar" style="background:#3BAB82">JR</span>James Rivera</span><span><span class="pill pill-green">Active</span></span><span>Interviewing</span><span>Today</span><span><button class="match-btn" onclick="openMatchModal('James Rivera')">Match Jobs</button></span></div>
+          <div class="jc-table-row"><span class="jc-name"><span class="jc-avatar" style="background:#1E2240">TW</span>Tamika Williams</span><span><span class="pill pill-yellow">Pending</span></span><span>Resume Review</span><span>2 days ago</span><span><button class="match-btn" onclick="openMatchModal('Tamika Williams')">Match Jobs</button></span></div>
+          <div class="jc-table-row"><span class="jc-name"><span class="jc-avatar" style="background:#6366f1">DM</span>David Martinez</span><span><span class="pill pill-blue">New</span></span><span>Intake</span><span>Today</span><span><button class="match-btn" onclick="openMatchModal('David Martinez')">Match Jobs</button></span></div>
+          <div class="jc-table-row"><span class="jc-name"><span class="jc-avatar" style="background:#f59e0b">SJ</span>Sandra Johnson</span><span><span class="pill pill-green">Active</span></span><span>Job Offer</span><span>Yesterday</span><span><button class="match-btn" onclick="openMatchModal('Sandra Johnson')">Match Jobs</button></span></div>
+          <div class="jc-table-row"><span class="jc-name"><span class="jc-avatar" style="background:#ef4444">KP</span>Kevin Parker</span><span><span class="pill pill-gray">On Hold</span></span><span>Background Check</span><span>5 days ago</span><span><button class="match-btn" onclick="openMatchModal('Kevin Parker')">Match Jobs</button></span></div>
+        </div>`,
+      clients: `
+        <div class="jc-header"><h3>👥 My Clients (12)</h3></div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          ${[['James Rivera','Active','Interviewing','#3BAB82','JR'],['Tamika Williams','Pending','Resume Review','#1E2240','TW'],['David Martinez','New','Intake','#6366f1','DM'],['Sandra Johnson','Active','Job Offer','#f59e0b','SJ'],['Kevin Parker','On Hold','Background Check','#ef4444','KP'],['Maria Chen','Active','Placed','#3EBF8F','MC'],['Tony Brooks','Pending','Orientation','#8b5cf6','TB']].map(([name,status,stage,color,init]) =>
+            `<div style="display:flex;align-items:center;gap:10px;background:#f8fafc;border-radius:8px;padding:10px 12px;border:1px solid #e5e7eb;">
+              <span class="jc-avatar" style="background:${color};flex-shrink:0">${init}</span>
+              <div style="flex:1;"><div style="font-weight:700;font-size:0.88rem;color:#1E2A4A;">${name}</div><div style="font-size:0.78rem;color:#666;">${stage}</div></div>
+              <span class="pill ${status==='Active'?'pill-green':status==='Pending'?'pill-yellow':status==='New'?'pill-blue':'pill-gray'}">${status}</span>
+              <button class="match-btn" onclick="openMatchModal('${name}')" style="font-size:0.75rem;padding:4px 10px;">Match Jobs</button>
+            </div>`).join('')}
+        </div>`,
+      prospect: `
+        <div class="jc-header"><h3>🔍 Prospect Employers</h3></div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <input id="prospect-input" type="text" placeholder="Search job title, industry, or zip code..." style="flex:1;padding:8px 12px;border:1px solid #ccc;border-radius:7px;font-size:0.85rem;" />
+          <button onclick="runProspect()" style="background:#3EBF8F;color:#fff;border:none;padding:8px 16px;border-radius:7px;font-weight:700;cursor:pointer;">Search</button>
+        </div>
+        <div id="prospect-results">
+          ${[['Amazon Logistics','Clearwater, FL','Warehouse / Distribution','Open to WOTC'],['Home Depot Distribution','Tampa, FL','Retail / Warehouse','Hiring Now'],['FedEx Ground','St. Petersburg, FL','Delivery / Logistics','Background Friendly'],['Publix Supermarkets','Pinellas County, FL','Retail / Food Service','Entry Level OK'],['BayCare Health','Tampa Bay, FL','Healthcare Support','Training Provided']].map(([co,loc,ind,tag]) =>
+            `<div style="display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;margin-bottom:7px;">
+              <div><div style="font-weight:700;font-size:0.88rem;color:#1E2A4A;">${co}</div><div style="font-size:0.78rem;color:#666;">${loc} • ${ind}</div></div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:0.72rem;background:#f0faf6;color:#3EBF8F;padding:3px 8px;border-radius:10px;">${tag}</span>
+                <button onclick="showToast('📧 Outreach email sent to ${co}!')" style="background:#1E2A4A;color:#fff;border:none;padding:5px 12px;border-radius:6px;font-size:0.78rem;font-weight:700;cursor:pointer;">Send Outreach</button>
+              </div>
+            </div>`).join('')}
+        </div>`,
+      jobboard: `
+        <div class="jc-header"><h3>💼 Job Board</h3></div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          ${[['Warehouse Associate','Amazon Logistics','Clearwater, FL','$16–$19/hr','Full Time'],['Forklift Operator','Home Depot Distribution','Tampa, FL','$18–$21/hr','Full Time'],['Customer Service Rep','Bright House Networks','Tampa, FL','$15–$17/hr','Full Time'],['Delivery Driver','FedEx Ground','St. Pete, FL','$18–$22/hr','Full Time'],['Cashier / Stocker','Publix','Pinellas, FL','$14–$16/hr','Part/Full Time']].map(([title,co,loc,pay,type]) =>
+            `<div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-weight:700;font-size:0.88rem;color:#1E2A4A;">${title}</div><div style="font-size:0.78rem;color:#666;">${co} • ${loc} • ${pay}</div></div>
+              <button onclick="showToast('✅ Job matched to eligible clients!')" style="background:#3EBF8F;color:#fff;border:none;padding:5px 12px;border-radius:6px;font-size:0.78rem;font-weight:700;cursor:pointer;">Match Clients</button>
+            </div>`).join('')}
+        </div>`,
+      empdb: `
+        <div class="jc-header"><h3>📋 Employer Database</h3></div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          ${[['Amazon Logistics','Clearwater, FL','12 placements','Active Partner'],['Home Depot Distribution','Tampa, FL','7 placements','Active Partner'],['FedEx Ground','St. Pete, FL','5 placements','Active Partner'],['Bright House Networks','Tampa, FL','3 placements','New Contact'],['BayCare Health','Tampa Bay, FL','1 placement','In Progress']].map(([co,loc,placements,status]) =>
+            `<div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-weight:700;font-size:0.88rem;color:#1E2A4A;">${co}</div><div style="font-size:0.78rem;color:#666;">${loc} • ${placements}</div></div>
+              <span style="font-size:0.75rem;background:#f0faf6;color:#3EBF8F;padding:3px 9px;border-radius:10px;">${status}</span>
+            </div>`).join('')}
+        </div>`,
+      messages: `
+        <div class="jc-header"><h3>💬 Messages</h3></div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          ${[['James Rivera','Coach, I have an interview tomorrow at Amazon! 🎉','2 min ago',true],['Tamika Williams','Can you review my resume before Friday?','1 hr ago',true],['Sandra Johnson','Got the job offer! Starting Monday.','Yesterday',false],['David Martinez','What time is our meeting?','2 days ago',false]].map(([name,msg,time,unread]) =>
+            `<div onclick="showToast('💬 Opening conversation with ${name}...')" style="display:flex;align-items:center;gap:10px;background:${unread?'#f0faf6':'#f8fafc'};border:1px solid ${unread?'#3EBF8F':'#e5e7eb'};border-radius:8px;padding:10px 12px;cursor:pointer;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#1E2A4A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0;">${name.split(' ').map(w=>w[0]).join('')}</div>
+              <div style="flex:1;min-width:0;"><div style="font-weight:700;font-size:0.85rem;color:#1E2A4A;">${name}${unread?' <span style="background:#3EBF8F;color:#fff;font-size:0.65rem;padding:1px 6px;border-radius:8px;margin-left:4px;">New</span>':''}</div><div style="font-size:0.78rem;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${msg}</div></div>
+              <div style="font-size:0.72rem;color:#999;flex-shrink:0;">${time}</div>
+            </div>`).join('')}
+        </div>`,
+      reports: `
+        <div class="jc-header"><h3>📊 Reports — July 2026</h3></div>
+        <div class="jc-stats" style="margin-bottom:12px;">
+          <div class="jc-stat-card"><div class="jc-num">5</div><div class="jc-lbl">Placements YTD</div></div>
+          <div class="jc-stat-card"><div class="jc-num">87%</div><div class="jc-lbl">30-Day Retention</div></div>
+          <div class="jc-stat-card"><div class="jc-num">$16.40</div><div class="jc-lbl">Avg Starting Wage</div></div>
+        </div>
+        <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:12px;">
+          <div style="font-weight:700;color:#1E2A4A;margin-bottom:8px;font-size:0.88rem;">Placement Outcomes</div>
+          ${[['James Rivera','Amazon Logistics','Warehouse Associate','$17/hr','Day 14'],['Sandra Johnson','Bright House Networks','Customer Service Rep','$16/hr','Day 30'],['Maria Chen','FedEx Ground','Delivery Driver','$19/hr','Day 60'],['Tony Brooks','Home Depot','Stocker','$15/hr','Day 90'],['Lisa Nguyen','Publix','Cashier','$14/hr','Day 180']].map(([name,co,title,wage,retention]) =>
+            `<div style="display:flex;justify-content:space-between;font-size:0.78rem;padding:5px 0;border-bottom:1px solid #e5e7eb;color:#555;">
+              <span style="font-weight:600;color:#1E2A4A;">${name}</span><span>${co}</span><span style="color:#3EBF8F;">${wage}</span><span>${retention} ✅</span>
+            </div>`).join('')}
+        </div>
+        <button onclick="showToast('📄 Report exported to PDF!')" style="margin-top:12px;background:#1E2A4A;color:#fff;border:none;padding:8px 20px;border-radius:7px;font-weight:700;cursor:pointer;font-size:0.85rem;">Export Report PDF</button>`
+    };
+    function showCoachView(view, navEl) {
+      document.querySelectorAll('.jc-nav-item').forEach(el => el.classList.remove('active'));
+      if (navEl) navEl.classList.add('active');
+      document.querySelector('#demo-coach .jc-main').innerHTML = coachViews[view] || coachViews.dashboard;
+    }
+
+    // ---- SEEKER SIDEBAR VIEWS ----
+    const seekerViews = {
+      dashboard: null, // handled by static HTML
+      resume: `
+        <div class="js-welcome"><h3>📄 My Resume</h3><p>AI-assisted resume builder — your info is pre-filled from your profile.</p></div>
+        <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:14px;font-size:0.85rem;">
+          <div style="font-weight:700;color:#1E2A4A;font-size:1rem;margin-bottom:2px;">James Rivera</div>
+          <div style="color:#666;font-size:0.8rem;margin-bottom:10px;">Tampa, FL • james.r@email.com • (813) 555-0192</div>
+          <div style="font-weight:700;color:#1E2A4A;margin-bottom:4px;">Objective</div>
+          <div style="color:#555;font-size:0.82rem;margin-bottom:10px;">Motivated and reliable warehouse professional seeking full-time employment. Strong work ethic, punctual, and eager to grow with a team-oriented company.</div>
+          <div style="font-weight:700;color:#1E2A4A;margin-bottom:4px;">Skills</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">${['Forklift Certified','Inventory Management','Team Player','Reliable Transportation','Basic Computer Skills'].map(s=>`<span style="background:#f0faf6;color:#3EBF8F;padding:2px 9px;border-radius:10px;font-size:0.78rem;">${s}</span>`).join('')}</div>
+          <div style="font-weight:700;color:#1E2A4A;margin-bottom:4px;">Work History</div>
+          <div style="font-size:0.82rem;color:#555;">Warehouse Associate — Walmart Distribution (2021–2023)<br>General Laborer — Temp Agency (2019–2021)</div>
+        </div>
+        <button onclick="showToast('✅ Resume saved and shared with your coach!')" style="margin-top:10px;background:#3EBF8F;color:#fff;border:none;padding:8px 20px;border-radius:7px;font-weight:700;cursor:pointer;font-size:0.85rem;">Save & Share with Coach</button>`,
+      matches: `
+        <div class="js-welcome"><h3>💼 My Job Matches</h3><p>Personalized matches based on your skills and location.</p></div>
+        <div class="js-jobs">
+          <div class="js-job-row"><div><div class="js-job-title">Warehouse Associate</div><div class="js-job-co">Amazon Logistics • Clearwater, FL • $16–$19/hr</div></div><button class="apply-btn" onclick="applyToJob(this,'Warehouse Associate','Amazon Logistics')">Apply Now</button></div>
+          <div class="js-job-row"><div><div class="js-job-title">Customer Service Rep</div><div class="js-job-co">Bright House Networks • Tampa, FL • $15–$17/hr</div></div><button class="apply-btn" onclick="applyToJob(this,'Customer Service Rep','Bright House Networks')">Apply Now</button></div>
+          <div class="js-job-row"><div><div class="js-job-title">Delivery Driver</div><div class="js-job-co">FedEx Ground • St. Petersburg, FL • $18–$22/hr</div></div><button class="apply-btn" onclick="applyToJob(this,'Delivery Driver','FedEx Ground')">Apply Now</button></div>
+          <div class="js-job-row"><div><div class="js-job-title">Forklift Operator</div><div class="js-job-co">Home Depot Distribution • Tampa, FL • $18–$21/hr</div></div><button class="apply-btn" onclick="applyToJob(this,'Forklift Operator','Home Depot Distribution')">Apply Now</button></div>
+        </div>`,
+      interview: `
+        <div class="js-welcome"><h3>🎤 Mock Interview Practice</h3><p>Practice answering common interview questions. Build your confidence before the real thing.</p></div>
+        <div id="interview-box" style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:14px;">
+          <div style="font-size:0.75rem;color:#3EBF8F;font-weight:700;margin-bottom:6px;">QUESTION 1 OF 5</div>
+          <div id="interview-q" style="font-weight:700;color:#1E2A4A;font-size:0.92rem;margin-bottom:12px;">Tell me about yourself and why you're looking for work right now.</div>
+          <textarea id="interview-ans" placeholder="Type your answer here..." style="width:100%;height:80px;padding:8px;border:1px solid #ccc;border-radius:7px;font-size:0.83rem;resize:none;box-sizing:border-box;"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button onclick="submitInterviewAnswer()" style="background:#3EBF8F;color:#fff;border:none;padding:7px 18px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.83rem;">Submit Answer</button>
+            <button onclick="skipInterviewQ()" style="background:#eee;color:#555;border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:0.83rem;">Skip</button>
+          </div>
+          <div id="interview-feedback" style="display:none;margin-top:10px;background:#f0faf6;border-radius:7px;padding:10px;font-size:0.82rem;color:#1E2A4A;"></div>
+        </div>`,
+      learn: `
+        <div class="js-welcome"><h3>🎓 Workforce Readiness Library</h3><p>Short videos to help you land and keep a great job.</p></div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          ${[['How to Write a Winning Resume','8 min','Resume Tips'],['Dressing for Success on a Budget','6 min','First Impressions'],['Using AI to Find a Job Faster','10 min','Job Search'],['What to Expect in Your First Week','7 min','Keeping Your Job'],['How to Handle a Tough Boss','5 min','Workplace Skills'],['Understanding Your Paycheck','6 min','Financial Basics']].map(([title,dur,tag]) =>
+            `<div onclick="showToast('▶️ Playing: ${title}')" style="display:flex;align-items:center;gap:10px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;cursor:pointer;">
+              <div style="width:38px;height:38px;background:#1E2A4A;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#3EBF8F;font-size:1.1rem;flex-shrink:0;">▶</div>
+              <div style="flex:1;"><div style="font-weight:700;font-size:0.85rem;color:#1E2A4A;">${title}</div><div style="font-size:0.75rem;color:#666;">${dur} • ${tag}</div></div>
+            </div>`).join('')}
+        </div>`,
+      coach: `
+        <div class="js-welcome"><h3>💬 My Coach</h3><p>Your dedicated job coach is here to help.</p></div>
+        <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;margin-bottom:12px;">
+          <div style="width:48px;height:48px;border-radius:50%;background:#3EBF8F;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;flex-shrink:0;">MS</div>
+          <div><div style="font-weight:700;color:#1E2A4A;">Maria Santos</div><div style="font-size:0.8rem;color:#666;">Employment Specialist • Gainwork</div><div style="font-size:0.78rem;color:#3EBF8F;margin-top:2px;">● Online now</div></div>
+        </div>
+        <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-bottom:10px;">
+          <div style="font-size:0.78rem;color:#999;margin-bottom:6px;">Maria Santos • 1 hour ago</div>
+          <div style="font-size:0.85rem;color:#1E2A4A;">Hi James! I found 3 new job matches for you. The Amazon Warehouse position looks like a great fit — they're very open to candidates with your background. Let me know if you want me to reach out to them directly!</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <input id="coach-msg" type="text" placeholder="Reply to Maria..." style="flex:1;padding:8px 12px;border:1px solid #ccc;border-radius:7px;font-size:0.83rem;" />
+          <button onclick="sendCoachMessage()" style="background:#3EBF8F;color:#fff;border:none;padding:8px 16px;border-radius:7px;font-weight:700;cursor:pointer;">Send</button>
+        </div>`
+    };
+    function showSeekerView(view, navEl) {
+      document.querySelectorAll('.js-nav-item').forEach(el => el.classList.remove('active'));
+      if (navEl) navEl.classList.add('active');
+      if (view === 'dashboard') {
+        // restore original dashboard HTML
+        document.querySelector('#demo-seeker .js-main').innerHTML = `
+          <div class="js-welcome">
+            <h3>Good morning, James! 👋</h3>
+            <p>You have 3 new job matches and a message from your coach.</p>
+            <div class="js-progress">
+              <div class="js-progress-label"><span>Profile Completion</span><span>65%</span></div>
+              <div class="js-progress-bar"><div class="js-progress-fill"></div></div>
+            </div>
+          </div>
+          <div class="js-cards">
+            <div class="js-card" onclick="showSeekerView('resume', document.querySelectorAll('.js-nav-item')[1])" style="cursor:pointer;"><div class="js-card-icon">📄</div><h4>Build My Resume</h4><p>AI-powered resume builder</p></div>
+            <div class="js-card" onclick="showSeekerView('interview', document.querySelectorAll('.js-nav-item')[3])" style="cursor:pointer;"><div class="js-card-icon">🎤</div><h4>Practice Interview</h4><p>Interactive mock questions</p></div>
+            <div class="js-card" onclick="showSeekerView('learn', document.querySelectorAll('.js-nav-item')[4])" style="cursor:pointer;"><div class="js-card-icon">🎓</div><h4>Watch &amp; Learn</h4><p>Workforce readiness videos</p></div>
+            <div class="js-card" onclick="showSeekerView('coach', document.querySelectorAll('.js-nav-item')[5])" style="cursor:pointer;"><div class="js-card-icon">💬</div><h4>Message Coach</h4><p>1 unread message from Maria</p></div>
+          </div>
+          <div class="js-jobs">
+            <div class="js-jobs-header">🎯 Your Job Matches (3 New)</div>
+            <div class="js-job-row" id="apply-row-1"><div><div class="js-job-title">Warehouse Associate</div><div class="js-job-co">Amazon Logistics • Clearwater, FL</div></div><button class="apply-btn" onclick="applyToJob(this,'Warehouse Associate','Amazon Logistics')">Apply Now</button></div>
+            <div class="js-job-row" id="apply-row-2"><div><div class="js-job-title">Customer Service Rep</div><div class="js-job-co">Bright House Networks • Tampa, FL</div></div><button class="apply-btn" onclick="applyToJob(this,'Customer Service Rep','Bright House Networks')">Apply Now</button></div>
+            <div class="js-job-row" id="apply-row-3"><div><div class="js-job-title">Delivery Driver</div><div class="js-job-co">FedEx Ground • St. Petersburg, FL</div></div><button class="apply-btn" onclick="applyToJob(this,'Delivery Driver','FedEx Ground')">Apply Now</button></div>
+          </div>`;
+        return;
+      }
+      document.querySelector('#demo-seeker .js-main').innerHTML = seekerViews[view] || '';
+    }
+    function submitInterviewAnswer() {
+      const ans = document.getElementById('interview-ans').value.trim();
+      if (!ans) { showToast('⚠️ Please type an answer first.'); return; }
+      const feedback = document.getElementById('interview-feedback');
+      feedback.style.display = 'block';
+      feedback.innerHTML = '💡 <strong>Coach Tip:</strong> Great start! Try to include a specific example from your work history. Mention your reliability and willingness to learn — employers love that.';
+      document.getElementById('interview-ans').value = '';
+      showToast('✅ Answer submitted! Coach feedback added.');
+    }
+    function skipInterviewQ() {
+      showToast('⏭️ Question skipped. Moving to next...');
+    }
+    function sendCoachMessage() {
+      const msg = document.getElementById('coach-msg').value.trim();
+      if (!msg) return;
+      showToast('✅ Message sent to Maria!');
+      document.getElementById('coach-msg').value = '';
+    }
+    function runProspect() {
+      const q = document.getElementById('prospect-input').value.trim();
+      showToast('🔍 Searching for employers' + (q ? ' matching "' + q + '"' : '') + '...');
     }
 
     // Waitlist form AJAX submission
